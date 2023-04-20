@@ -1,0 +1,31 @@
+<div class="settings">
+    <h3 style="text-align: center;">Настройка</h3>
+    
+    <div class="form-group">
+        <label>Количество роторов</label>
+        <input class="form-control" name="rotors" type="number" [(ngModel)]="settings.rotorSize" #rotorSize="ngModel" required/>
+        <div *ngIf="rotorSize.invalid && rotorSize.touched" class="alert alert-danger">
+            Количество роторов не задано
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Рефлектор</label>
+        <input class="form-control" name="rotors" type="text" [(ngModel)]="settings.reflector" #reflector="ngModel" required/>
+        <div *ngIf="reflector.invalid && reflector.touched" class="alert alert-danger">
+            Рефлектор не задан
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Вилки</label>
+        <input class="form-control" name="rotors" type="text" [(ngModel)]="settings.plugs" #plugs="ngModel" required/>
+        <div *ngIf="plugs.invalid && plugs.touched" class="alert alert-danger">
+            Вилки не заданы
+        </div>
+    </div>
+
+    <div class="col-md-3 card-deck" *ngFor="let i of settings.rotorSize>
+        <div>a</div>
+    </div>
+</div>
