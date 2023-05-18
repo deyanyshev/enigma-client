@@ -1,0 +1,17 @@
+<div class="enigma">
+    <h3 style="text-align: center;">Enigma</h3>
+    <div class="form-group">
+        <label>Ввод:</label>
+        <input class="form-control" type="text" [(ngModel)]="enigmaText"/>
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-success submit-btn" type="submit" (click)="encrypt()">Encrypt</button>
+        <button style="margin-left: 10px;" class="btn btn-danger submit-btn" type="submit" (click)="decrypt()">Decrypt</button>
+    </div>
+
+    <div class="form-group">
+        <label>Результат</label>
+        <input class="form-control" type="text" [(ngModel)]="result" (click)="decrypt()" readonly/>
+    </div>
+</div>

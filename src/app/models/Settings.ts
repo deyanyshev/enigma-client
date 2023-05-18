@@ -1,15 +1,15 @@
-import { Rotor } from "./Rotor";
-
 export class Settings {
-    rotorSize: number;
+    rotors: string[];
     reflector: string;
-    plugs: string;
-    rotors: Rotor[];
+    plugs: string[];
+    positions: string[];
+    alphabet: string;
 
     constructor() {
         this.reflector = "";
-        this.plugs = "";
-        this.rotorSize = 0;
+        this.plugs = [];
         this.rotors = [];
+        this.positions = [];
+        this.alphabet = "";
     }
 }

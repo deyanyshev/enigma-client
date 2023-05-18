@@ -3,29 +3,67 @@
     
     <div class="form-group">
         <label>Количество роторов</label>
-        <input class="form-control" name="rotors" type="number" [(ngModel)]="settings.rotorSize" #rotorSize="ngModel" required/>
-        <div *ngIf="rotorSize.invalid && rotorSize.touched" class="alert alert-danger">
+        <input class="form-control" type="number" [(ngModel)]="rotorSizes.length" #rsize="ngModel" min="1" required/>
+        <div *ngIf="rsize.invalid && rsize.touched" class="alert alert-danger">
             Количество роторов не задано
         </div>
     </div>
 
     <div class="form-group">
         <label>Рефлектор</label>
-        <input class="form-control" name="rotors" type="text" [(ngModel)]="settings.reflector" #reflector="ngModel" required/>
+        <input class="form-control" type="text" [(ngModel)]="settings.reflector" #reflector="ngModel" required/>
         <div *ngIf="reflector.invalid && reflector.touched" class="alert alert-danger">
             Рефлектор не задан
         </div>
     </div>
 
     <div class="form-group">
-        <label>Вилки</label>
-        <input class="form-control" name="rotors" type="text" [(ngModel)]="settings.plugs" #plugs="ngModel" required/>
-        <div *ngIf="plugs.invalid && plugs.touched" class="alert alert-danger">
-            Вилки не заданы
+        <label>Алфавит</label>
+        <input class="form-control" type="text" [(ngModel)]="settings.alphabet" #alphabet="ngModel" required/>
+        <div *ngIf="alphabet.invalid && alphabet.touched" class="alert alert-danger">
+            Алфавит не задан
         </div>
     </div>
 
-    <div class="col-md-3 card-deck" *ngFor="let i of settings.rotorSize>
-        <div>a</div>
+    <div *ngFor="let k of rotorSizes; let i = index">
+        <div>
+            <div class="form-group rotpair">
+                <label>Ротор</label>
+                <input class="form-control" type="text" [(ngModel)]="settings.rotors[i]" #rot="ngModel" required/>
+                <div *ngIf="!settings.rotors[i]" class="alert alert-danger">
+                    Ротор не задан
+                </div>
+            </div>
+    
+            <div class="form-group rotpair">
+                <label>Позиция</label>
+                <input class="form-control" type="number" [(ngModel)]="settings.positions[i]" #position="ngModel" required/>
+                <div *ngIf="settings.positions[i] == null" class="alert alert-danger">
+                    Позиция не задана
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Количество вилок</label>
+        <input class="form-control" type="number" [(ngModel)]="plugsSizes.length" #psize="ngModel" min="0" required/>
+        <div *ngIf="psize.invalid && psize.touched" class="alert alert-danger">
+            Количество вилок не задано
+        </div>
+    </div>
+
+    <div *ngFor="let k of plugsSizes; let i = index">
+        <div class="form-group">
+            <label>Вилки</label>
+            <input class="form-control" type="text" [(ngModel)]="settings.plugs[i]" #plug="ngModel" required/>
+            <div *ngIf="!settings.plugs[i]" class="alert alert-danger">
+                Вилки не заданы
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button [disabled]="rsize.invalid || reflector.invalid || alphabet.invalid" class="btn btn-success submit-btn" type="submit" (click)="saveSettings()">Сохранить</button>
     </div>
 </div>
